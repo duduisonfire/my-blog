@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Navbar } from '../navbar/navbar';
 import SmNavbar from '../navbar/sm-navbar';

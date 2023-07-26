@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import ListItem from './components/list-item';
 import { FaBars } from 'react-icons/fa6';
