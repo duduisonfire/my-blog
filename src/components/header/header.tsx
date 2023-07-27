@@ -6,7 +6,7 @@ import SmNavbar from '../navbar/sm-navbar';
 
 export default function Header() {
 	return (
-		<div>
+		<div className="col-start-1 col-end-13">
 			<Navbar />
 			<SmNavbar />
 		</div>
