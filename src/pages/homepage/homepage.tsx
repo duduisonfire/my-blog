@@ -28,7 +28,7 @@ export default function Homepage() {
 		author: 'Igor Tiburcio Cavalcanti',
 	};
 
-	for (let index = 0; index < 3; index++) {
+	for (let index = 0; index < 4; index++) {
 		postList.push(post);
 	}
 	console.log(postList);
@@ -36,7 +36,7 @@ export default function Homepage() {
 	return (
 		<div className="grid grid-cols-12 col-start-1 col-end-13">
 			<div className="bg-white grid grid-cols-12 col-start-2 col-end-12 md:my-6">
-				<div className="flex flex-wrap col-start-1 col-end-13 m-4">
+				<div className="flex flex-wrap justify-center col-start-1 col-end-13 m-4">
 					{postList.map((post) => (
 						<PostCard key={post.title} post={post} />
 					))}
