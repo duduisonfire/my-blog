@@ -1,7 +1,9 @@
 export default interface IPost {
-	title: string;
-	description: string;
-	category: string;
-	date: Date;
-	author: string;
+	postTitle: string;
+	postDescription: string;
+	postCategory: string;
+	createdAt: Date;
+	postAuthor: string;
+	postImage: string;
+	post: string;
 }

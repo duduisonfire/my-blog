@@ -1,44 +1,42 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PostCard from '@/components/post-card/post-card';
 import IPost from '@/interfaces/IPost';
+import { blogApi } from '@/utils/axios/axiosInstance';
 
 export default function Homepage() {
-	const postList = [];
-	const post: IPost = {
-		title: 'Lorem Ipsum',
-		description:
-			'Lorem ipsum dolor sit amet, \
-            consectetur adipiscing elit. \
-            Sed tellus tellus, imperdiet \
-            blandit ex et, rhoncus facilisis \
-            eros. Nam ligula sem, bibendum nec \
-            euismod ut, ornare non ligula. \
-            Maecenas quis magna eu enim eleifend \
-            vestibulum. Aliquam erat volutpat. \
-            Fusce dapibus metus non ligula \
-            dapibus pellentesque. Nullam viverra \
-            volutpat porta. Nulla vitae enim \
-            maximus erat aliquet posuere a suscipit \
-            orci. Maecenas sit amet interdum quam. \
-            Aenean vel suscipit metus. Nam felis diam, maximus in mattis.',
-		category: 'Test',
-		date: new Date(),
-		author: 'Igor Tiburcio Cavalcanti',
-	};
+	const [posts, setPosts] = useState<IPost[]>([]);
+	const [page] = useState(0);
 
-	for (let index = 0; index < 4; index++) {
-		postList.push(post);
-	}
-	console.log(postList);
+	useEffect(() => {
+		const getPages = async () => {
+			const listOfPostsJSON = (await blogApi.get(`/api/posts/${page}`)).data as IPost[];
+
+			const listOfPosts: IPost[] = listOfPostsJSON.map((post) => ({
+				postTitle: post.postTitle,
+				postDescription: post.postDescription,
+				postCategory: post.postCategory,
+				createdAt: new Date(post.createdAt),
+				postAuthor: post.postAuthor,
+				postImage: post.postImage,
+				post: post.post,
+			}));
+
+			console.log(listOfPosts);
+
+			setPosts(listOfPosts);
+		};
+
+		getPages();
+	}, [page]);
 
 	return (
 		<div className="grid grid-cols-12 col-start-1 col-end-13">
-			<div className="bg-white grid grid-cols-12 col-start-2 col-end-12 md:my-6">
+			<div className="bg-white col-start-2 col-end-12 flex flex-wrap md:my-6">
 				<div className="flex flex-wrap justify-center col-start-1 col-end-13 m-4">
-					{postList.map((post) => (
-						<PostCard key={post.title} post={post} />
+					{posts.map((post) => (
+						<PostCard key={post.postTitle} post={post} />
 					))}
 				</div>
 			</div>
