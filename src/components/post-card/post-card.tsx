@@ -4,7 +4,7 @@ import IPostCardProps from './interfaces/IPostCardProps';
 
 export default function PostCard(props: IPostCardProps) {
 	return (
-		<div className="max-w-md rounded shadow-lg border border-black m-2">
+		<div className="max-w-lg rounded shadow-lg border border-black m-2">
 			<Image width={400} height={400} className="w-full" src={props.post.postImage} alt={props.post.postDescription} />
 			<div className="px-6 py-4">
 				<div className="flex md:justify-between flex-wrap">
